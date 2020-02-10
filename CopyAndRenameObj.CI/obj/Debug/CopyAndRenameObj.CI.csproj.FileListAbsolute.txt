@@ -1,0 +1,12 @@
+C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.CI\bin\Debug\CopyAndRenameObj.CI.exe.config
+C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.CI\bin\Debug\CopyAndRenameObj.CI.exe
+C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.CI\bin\Debug\CopyAndRenameObj.CI.pdb
+C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.CI\obj\Debug\CopyAndRenameObj.CI.csprojAssemblyReference.cache
+C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.CI\obj\Debug\CopyAndRenameObj.CI.Main.resources
+C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.CI\obj\Debug\CopyAndRenameObj.CI.Properties.Resources.resources
+C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.CI\obj\Debug\CopyAndRenameObj.CI.csproj.GenerateResource.cache
+C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.CI\obj\Debug\CopyAndRenameObj.CI.exe
+C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.CI\obj\Debug\CopyAndRenameObj.CI.pdb
+C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.CI\bin\Debug\CopyAndRenameObj.BL.dll
+C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.CI\bin\Debug\CopyAndRenameObj.BL.pdb
+C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.CI\obj\Debug\CopyAndRenameObj.CI.csproj.CopyComplete

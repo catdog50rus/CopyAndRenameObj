@@ -1,0 +1,8 @@
+C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.BL\bin\Debug\netstandard2.0\CopyAndRenameObj.BL.deps.json
+C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.BL\bin\Debug\netstandard2.0\CopyAndRenameObj.BL.dll
+C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.BL\bin\Debug\netstandard2.0\CopyAndRenameObj.BL.pdb
+C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.BL\obj\Debug\netstandard2.0\CopyAndRenameObj.BL.csprojAssemblyReference.cache
+C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.BL\obj\Debug\netstandard2.0\CopyAndRenameObj.BL.AssemblyInfoInputs.cache
+C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.BL\obj\Debug\netstandard2.0\CopyAndRenameObj.BL.AssemblyInfo.cs
+C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.BL\obj\Debug\netstandard2.0\CopyAndRenameObj.BL.dll
+C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.BL\obj\Debug\netstandard2.0\CopyAndRenameObj.BL.pdb
