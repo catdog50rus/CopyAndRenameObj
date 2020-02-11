@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.label1 = new System.Windows.Forms.Label();
             this.textOld = new System.Windows.Forms.TextBox();
             this.textNew = new System.Windows.Forms.TextBox();
@@ -42,6 +43,8 @@
             this.buttonCopy = new System.Windows.Forms.Button();
             this.listView2 = new System.Windows.Forms.ListView();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.Description = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -50,11 +53,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(242, 9);
+            this.label1.Location = new System.Drawing.Point(159, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(303, 13);
+            this.label1.Size = new System.Drawing.Size(441, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Система копирования файлов с изменением части имени";
+            this.label1.Text = "Система копирования подвижного состава RTrainSim, путем изменения части имени";
             // 
             // textOld
             // 
@@ -92,7 +95,7 @@
             // 
             // buttonSelect
             // 
-            this.buttonSelect.Location = new System.Drawing.Point(121, 339);
+            this.buttonSelect.Location = new System.Drawing.Point(121, 254);
             this.buttonSelect.Name = "buttonSelect";
             this.buttonSelect.Size = new System.Drawing.Size(107, 30);
             this.buttonSelect.TabIndex = 5;
@@ -102,7 +105,7 @@
             // 
             // buttonRun
             // 
-            this.buttonRun.Location = new System.Drawing.Point(30, 338);
+            this.buttonRun.Location = new System.Drawing.Point(31, 255);
             this.buttonRun.Name = "buttonRun";
             this.buttonRun.Size = new System.Drawing.Size(137, 29);
             this.buttonRun.TabIndex = 6;
@@ -115,33 +118,35 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(10, 13);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(345, 315);
+            this.listView1.Size = new System.Drawing.Size(345, 235);
             this.listView1.TabIndex = 7;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
             // 
             // panel1
             // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.buttonSelect);
             this.panel1.Controls.Add(this.listView1);
             this.panel1.Location = new System.Drawing.Point(3, 79);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(360, 383);
+            this.panel1.Size = new System.Drawing.Size(371, 297);
             this.panel1.TabIndex = 8;
             // 
             // panel2
             // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.buttonCopy);
             this.panel2.Controls.Add(this.listView2);
             this.panel2.Controls.Add(this.buttonRun);
-            this.panel2.Location = new System.Drawing.Point(378, 79);
+            this.panel2.Location = new System.Drawing.Point(380, 79);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(386, 383);
+            this.panel2.Size = new System.Drawing.Size(380, 297);
             this.panel2.TabIndex = 9;
             // 
             // buttonCopy
             // 
-            this.buttonCopy.Location = new System.Drawing.Point(205, 338);
+            this.buttonCopy.Location = new System.Drawing.Point(205, 255);
             this.buttonCopy.Name = "buttonCopy";
             this.buttonCopy.Size = new System.Drawing.Size(139, 30);
             this.buttonCopy.TabIndex = 8;
@@ -154,31 +159,52 @@
             this.listView2.HideSelection = false;
             this.listView2.Location = new System.Drawing.Point(18, 13);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(345, 315);
+            this.listView2.Size = new System.Drawing.Size(345, 235);
             this.listView2.TabIndex = 7;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.List;
             // 
             // panel3
             // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.textOld);
             this.panel3.Controls.Add(this.textNew);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Location = new System.Drawing.Point(3, 30);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(761, 43);
+            this.panel3.Size = new System.Drawing.Size(757, 43);
             this.panel3.TabIndex = 10;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(764, 24);
+            this.menuStrip1.TabIndex = 11;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // Description
+            // 
+            this.Description.Location = new System.Drawing.Point(3, 379);
+            this.Description.Name = "Description";
+            this.Description.Size = new System.Drawing.Size(757, 169);
+            this.Description.TabIndex = 12;
+            this.Description.Text = resources.GetString("Description.Text");
+            this.Description.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(772, 462);
+            this.ClientSize = new System.Drawing.Size(764, 547);
+            this.Controls.Add(this.Description);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
             this.Text = "Main";
             this.panel1.ResumeLayout(false);
@@ -206,6 +232,8 @@
         private System.Windows.Forms.ListView listView2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button buttonCopy;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.Label Description;
     }
 }
 

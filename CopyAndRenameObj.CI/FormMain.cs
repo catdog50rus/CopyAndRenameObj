@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace CopyAndRenameObj.CI
 {
@@ -21,16 +23,20 @@ namespace CopyAndRenameObj.CI
             InitializeComponent();
             buttonRun.Enabled = false;
             buttonCopy.Enabled = false;
+            textOld.Enabled = false;
+            textNew.Enabled = false;
         }
 
         private void ButtonSelect_Click(object sender, EventArgs e)
         {
+            
             DialogResult result = SelectFolderDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
                 selectFolder.SetFilesNamesList(SelectFolderDialog.SelectedPath);
                 
                 ListOldUpdate();
+                textOld.Enabled = true;
 
             }
         }
@@ -59,12 +65,15 @@ namespace CopyAndRenameObj.CI
         private void TextOld_TextChanged(object sender, EventArgs e)
         {
             selectFolder.OldName = textOld.Text;
+            textNew.Enabled = textOld.Text != "" ? true : false;
+            buttonRun.Enabled = (textNew.Text != "" && textOld.Text != "") ? true : false;
         }
 
         private void TextNew_TextChanged(object sender, EventArgs e)
         {
             selectFolder.NewName = textNew.Text;
-            buttonRun.Enabled = textNew.Text != ""?  true : false;
+           
+            buttonRun.Enabled = (textNew.Text != "" && textOld.Text !="")?   true : false;
         }
 
         private void ButtonRun_Click(object sender, EventArgs e)
@@ -90,5 +99,6 @@ namespace CopyAndRenameObj.CI
             Thread.Sleep(500);
             MessageBox.Show("Копирование успешно завершено!", "Выполнено!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
     }
 }

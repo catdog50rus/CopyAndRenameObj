@@ -26,6 +26,7 @@ namespace CopyAndRenameObj.BL.Controler
         {
             FilesNamesList = new List<FileInfo>();
             NewFilesNamesList = new List<string>();
+            
 
         }
 
