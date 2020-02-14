@@ -1,6 +1,6 @@
 ﻿namespace CopyAndRenameObj.CI
 {
-    partial class MainForm
+    partial class MainForm1
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -39,11 +39,7 @@
             this.SelectFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.listView1 = new System.Windows.Forms.ListView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.SelectDirs = new System.Windows.Forms.ListBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.buttonCopy = new System.Windows.Forms.Button();
             this.listView2 = new System.Windows.Forms.ListView();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -99,7 +95,7 @@
             // 
             // buttonSelect
             // 
-            this.buttonSelect.Location = new System.Drawing.Point(67, 269);
+            this.buttonSelect.Location = new System.Drawing.Point(121, 254);
             this.buttonSelect.Name = "buttonSelect";
             this.buttonSelect.Size = new System.Drawing.Size(107, 30);
             this.buttonSelect.TabIndex = 5;
@@ -109,7 +105,7 @@
             // 
             // buttonRename
             // 
-            this.buttonRename.Location = new System.Drawing.Point(59, 269);
+            this.buttonRename.Location = new System.Drawing.Point(31, 255);
             this.buttonRename.Name = "buttonRename";
             this.buttonRename.Size = new System.Drawing.Size(137, 29);
             this.buttonRename.TabIndex = 6;
@@ -120,9 +116,9 @@
             // listView1
             // 
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(16, 25);
+            this.listView1.Location = new System.Drawing.Point(10, 13);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(225, 238);
+            this.listView1.Size = new System.Drawing.Size(345, 235);
             this.listView1.TabIndex = 7;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
@@ -130,67 +126,27 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.SelectDirs);
             this.panel1.Controls.Add(this.buttonSelect);
+            this.panel1.Controls.Add(this.listView1);
             this.panel1.Location = new System.Drawing.Point(3, 79);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(251, 315);
+            this.panel1.Size = new System.Drawing.Size(371, 297);
             this.panel1.TabIndex = 8;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(163, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Папки с подвижным составом";
-            // 
-            // SelectDirs
-            // 
-            this.SelectDirs.FormattingEnabled = true;
-            this.SelectDirs.Location = new System.Drawing.Point(18, 25);
-            this.SelectDirs.Name = "SelectDirs";
-            this.SelectDirs.Size = new System.Drawing.Size(225, 238);
-            this.SelectDirs.TabIndex = 6;
-            this.SelectDirs.DoubleClick += new System.EventHandler(this.ListBox1_DoubleClick);
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.buttonCopy);
-            this.panel2.Controls.Add(this.listView1);
             this.panel2.Controls.Add(this.listView2);
             this.panel2.Controls.Add(this.buttonRename);
-            this.panel2.Location = new System.Drawing.Point(260, 79);
+            this.panel2.Location = new System.Drawing.Point(380, 79);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(500, 315);
+            this.panel2.Size = new System.Drawing.Size(380, 297);
             this.panel2.TabIndex = 9;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(253, 9);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(190, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Файлы нового подвижного состава\r\n";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(221, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Файлы копируемого подвижного состава\r\n";
             // 
             // buttonCopy
             // 
-            this.buttonCopy.Location = new System.Drawing.Point(302, 268);
+            this.buttonCopy.Location = new System.Drawing.Point(205, 255);
             this.buttonCopy.Name = "buttonCopy";
             this.buttonCopy.Size = new System.Drawing.Size(139, 30);
             this.buttonCopy.TabIndex = 8;
@@ -201,9 +157,9 @@
             // listView2
             // 
             this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(256, 24);
+            this.listView2.Location = new System.Drawing.Point(18, 13);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(225, 238);
+            this.listView2.Size = new System.Drawing.Size(345, 235);
             this.listView2.TabIndex = 7;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.List;
@@ -230,9 +186,9 @@
             // 
             // Description
             // 
-            this.Description.Location = new System.Drawing.Point(3, 397);
+            this.Description.Location = new System.Drawing.Point(3, 379);
             this.Description.Name = "Description";
-            this.Description.Size = new System.Drawing.Size(757, 182);
+            this.Description.Size = new System.Drawing.Size(757, 169);
             this.Description.TabIndex = 12;
             this.Description.Text = resources.GetString("Description.Text");
             this.Description.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -241,7 +197,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(764, 572);
+            this.ClientSize = new System.Drawing.Size(764, 547);
             this.Controls.Add(this.Description);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -252,9 +208,7 @@
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
@@ -280,10 +234,6 @@
         private System.Windows.Forms.Button buttonCopy;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Label Description;
-        private System.Windows.Forms.ListBox SelectDirs;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
     }
 }
 

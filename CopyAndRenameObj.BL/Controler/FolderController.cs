@@ -10,7 +10,9 @@ namespace CopyAndRenameObj.BL.Controler
     public class FolderController
     {
         private readonly FolderModel folderModel;
-        
+        private DirectoryInfo selectPath;
+
+
         private string selectDir;
         private string newDir;
         
@@ -22,7 +24,7 @@ namespace CopyAndRenameObj.BL.Controler
 
         public void SetSelectDir(string path)
         {
-            DirectoryInfo selectPath = new DirectoryInfo(path);
+            selectPath = new DirectoryInfo(path);
             folderModel.SelectFolderFilesList.AddRange(selectPath.GetFiles());
             foreach (var file in folderModel.SelectFolderFilesList)
             {
@@ -34,10 +36,12 @@ namespace CopyAndRenameObj.BL.Controler
         public List<FileInfo> GetSelectFoldersFilesNamesList()
         {
             return folderModel.SelectFolderFilesList;
+            
         }
 
         public bool ChangeFilesNames(string selectString, string newString)
         {
+            //bool renamed = false;
             folderModel.NewFilesNamesList.Clear();
             if (newString != "" && (selectString != null && selectString != ""))
             {
@@ -48,7 +52,17 @@ namespace CopyAndRenameObj.BL.Controler
                 }
 
                 newDir = selectDir.Replace(selectString, newString);
-                return true;
+                
+                for(int i = 0; i < folderModel.OldFilesNamesList.Count; i++)
+                {
+                    if (folderModel.NewFilesNamesList[i] != folderModel.OldFilesNamesList[i])
+                    {
+                        return true;
+                    }
+                    
+                }
+                //if (folderModel.NewFilesNamesList. == folderModel.OldFilesNamesList) return false;
+                return false;
             }
             else
             {

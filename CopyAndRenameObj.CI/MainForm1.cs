@@ -14,11 +14,11 @@ using System.Windows.Forms;
 
 namespace CopyAndRenameObj.CI
 {
-    public partial class MainForm : Form
+    public partial class MainForm1 : Form
     {
         private FolderController controller;// = new FolderController();
         
-        public MainForm()
+        public MainForm1()
         {
             InitializeComponent();
             buttonRename.Enabled = false;
@@ -30,26 +30,17 @@ namespace CopyAndRenameObj.CI
 
         private void ButtonSelect_Click(object sender, EventArgs e)
         {
-            Clear();
+            
             DialogResult result = SelectFolderDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                SelectDirs.Items.AddRange(Directory.GetDirectories(SelectFolderDialog.SelectedPath));
-            }
-        }
-
-        private void ListBox1_DoubleClick(object sender, EventArgs e)
-        {
-            //var s = SelectDirs.SelectedItem;
-            if (SelectDirs.SelectedItem != null)
-            {
                 controller = new FolderController();
-                controller.SetSelectDir(SelectDirs.SelectedItem.ToString());
-                ListFoldersUpdate();
+                controller.SetSelectDir(SelectFolderDialog.SelectedPath);
+                
+                ListOldUpdate();
                 textOld.Enabled = true;
-            }
-            
 
+            }
         }
 
         private void ButtonRename_Click(object sender, EventArgs e)
@@ -63,11 +54,7 @@ namespace CopyAndRenameObj.CI
                     ListNewUpdate();
                     buttonCopy.Enabled = true;
                 }
-                else
-                {
-                    MessageBox.Show("Изменяемая часть названия файла не найдена!", "Что-то пошло не так!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
+               
             } 
             else
             {
@@ -84,8 +71,6 @@ namespace CopyAndRenameObj.CI
             if (res)
             {
                 MessageBox.Show("Копирование успешно завершено!", "Выполнено!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Clear();
-                SelectDirs.Items.AddRange(Directory.GetDirectories(SelectFolderDialog.SelectedPath));
             }
             else
             {
@@ -94,7 +79,7 @@ namespace CopyAndRenameObj.CI
            
         }
 
-        private void ListFoldersUpdate()
+        private void ListOldUpdate()
         {
             listView1.Items.Clear();
 
@@ -127,18 +112,7 @@ namespace CopyAndRenameObj.CI
             buttonRename.Enabled = (textNew.Text != "" && textOld.Text !="")?   true : false;
         }
 
-        private void Clear()
-        {
-            listView1.Items.Clear();
-            listView2.Items.Clear();
-            textOld.Text = null;
-            textNew.Text = null;
-            buttonRename.Enabled = false;
-            buttonCopy.Enabled = false;
-            textOld.Enabled = false;
-            textNew.Enabled = false;
-            SelectDirs.Items.Clear();
-            
-        }
+        
+
     }
 }
