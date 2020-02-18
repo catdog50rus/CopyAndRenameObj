@@ -40,7 +40,7 @@ namespace CopyAndRenameObj.CI
 
         private void ListBox1_DoubleClick(object sender, EventArgs e)
         {
-            //var s = SelectDirs.SelectedItem;
+            
             if (SelectDirs.SelectedItem != null)
             {
                 controller = new FolderController();

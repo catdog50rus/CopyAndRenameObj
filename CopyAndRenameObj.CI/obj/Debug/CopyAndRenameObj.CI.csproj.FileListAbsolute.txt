@@ -10,4 +10,3 @@ C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRe
 C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.CI\bin\Debug\CopyAndRenameObj.BL.pdb
 C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.CI\obj\Debug\CopyAndRenameObj.CI.csproj.CopyComplete
 C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.CI\obj\Debug\CopyAndRenameObj.CI.MainForm.resources
-C:\Users\user\Downloads\Новая папка\C#\Repo\CopyAndRenameObj\CopyAndRenameObj\CopyAndRenameObj.CI\obj\Debug\CopyAndRenameObj.CI.MainForm1.resources
