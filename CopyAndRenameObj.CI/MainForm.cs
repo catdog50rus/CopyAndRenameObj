@@ -16,7 +16,8 @@ namespace CopyAndRenameObj.CI
 {
     public partial class MainForm : Form
     {
-        private FolderController controller;// = new FolderController();
+        private FolderController controller;
+        private string selectedPath;
         
         public MainForm()
         {
@@ -30,21 +31,35 @@ namespace CopyAndRenameObj.CI
 
         private void ButtonSelect_Click(object sender, EventArgs e)
         {
+            
             Clear();
             DialogResult result = SelectFolderDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                SelectDirs.Items.AddRange(Directory.GetDirectories(SelectFolderDialog.SelectedPath));
+                selectedPath = SelectFolderDialog.SelectedPath;
+                //SelectDirs.Items.AddRange(Directory.GetDirectories(SelectFolderDialog.SelectedPath));
+                var collection = new List<string>();
+                collection.AddRange(Directory.GetDirectories(selectedPath));
+                foreach (var item in collection)
+                {
+                    SelectDirs.Items.Add(item.Remove(0, selectedPath.Length+1));
+                }
             }
         }
 
         private void ListBox1_DoubleClick(object sender, EventArgs e)
         {
             
+            
             if (SelectDirs.SelectedItem != null)
             {
+                //controller = new FolderController();
+                //controller.SetSelectDir(SelectDirs.SelectedItem.ToString());
+                
+                var path = $"{selectedPath}/{SelectDirs.SelectedItem.ToString()}";
                 controller = new FolderController();
-                controller.SetSelectDir(SelectDirs.SelectedItem.ToString());
+                controller.SetSelectDir(@path);
+                //
                 ListFoldersUpdate();
                 textOld.Enabled = true;
             }
@@ -55,6 +70,7 @@ namespace CopyAndRenameObj.CI
         private void ButtonRename_Click(object sender, EventArgs e)
         {
 
+            
             if(textNew.Text != textOld.Text)
             {
                 var res = controller.ChangeFilesNames(textOld.Text, textNew.Text);
@@ -79,8 +95,9 @@ namespace CopyAndRenameObj.CI
 
         private void ButtonCopy_Click(object sender, EventArgs e)
         {
+            
             bool res = controller.CopyFiles();
-
+            
             if (res)
             {
                 MessageBox.Show("Копирование успешно завершено!", "Выполнено!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -96,6 +113,7 @@ namespace CopyAndRenameObj.CI
 
         private void ListFoldersUpdate()
         {
+            
             listView1.Items.Clear();
 
             foreach (var file in controller.GetSelectFoldersFilesNamesList())
@@ -108,6 +126,7 @@ namespace CopyAndRenameObj.CI
 
         private void ListNewUpdate()
         {
+           
             listView2.Items.Clear();
             foreach (var file in controller.GetNewFilesNamesList())
             {
