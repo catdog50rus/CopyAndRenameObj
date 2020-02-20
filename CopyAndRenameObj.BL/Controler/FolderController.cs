@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 using CopyAndRenameObj.BL.Model;
 
@@ -10,10 +8,10 @@ namespace CopyAndRenameObj.BL.Controler
     public class FolderController
     {
         private readonly FolderModel folderModel;
+        
         private DirectoryInfo selectPath;
 
         private string selectDir;
-        private string newDir;
 
         /// <summary>
         /// В конструкторе создаем экземпляр модели.
@@ -21,8 +19,10 @@ namespace CopyAndRenameObj.BL.Controler
         public FolderController()
         {
             folderModel = new FolderModel();
+            
         }
 
+        
 
         /// <summary>
         /// Метод для обработки выбранного каталога
@@ -32,8 +32,10 @@ namespace CopyAndRenameObj.BL.Controler
         {
             //создаем экземпляр класса DirectoryInfo
             selectPath = new DirectoryInfo(path);
+
             //передаем в модель коллекцию файлов в выбранном каталоге
-            folderModel.SelectFolderFilesList.AddRange(selectPath.GetFiles());
+            folderModel.SelectFolderFilesList.AddRange(selectPath.GetFiles());// selectPath.GetFiles());
+            
             //перебираем в модель коллекцию имен файлов
             foreach (var file in folderModel.SelectFolderFilesList)
             {
@@ -50,6 +52,7 @@ namespace CopyAndRenameObj.BL.Controler
         /// <returns>Метод для получения из модели списка файлов</returns>
         public List<FileInfo> GetSelectFoldersFilesNamesList()
         {
+            
             return folderModel.SelectFolderFilesList;  
         }
 
@@ -64,9 +67,10 @@ namespace CopyAndRenameObj.BL.Controler
                         folderModel.OldFilesNamesList[i].Replace(selectString, newString) : folderModel.OldFilesNamesList[i]);
                 }
 
-                newDir = selectDir.Replace(selectString, newString);
-                
-                for(int i = 0; i < folderModel.OldFilesNamesList.Count; i++)
+                folderModel.NewDirectory = selectDir.Replace(selectString, newString);
+                //newDir = selectDir.Replace(selectString, newString);
+
+                for (int i = 0; i < folderModel.OldFilesNamesList.Count; i++)
                 {
                     if (folderModel.NewFilesNamesList[i] != folderModel.OldFilesNamesList[i])
                     {
@@ -99,11 +103,11 @@ namespace CopyAndRenameObj.BL.Controler
         /// <returns>Метод возвращает true, если копирование файлой прошло успешно или false, если произошла ошибка</returns>
         public bool CopyFiles()
         {
-            if (newDir != null)
+            if (folderModel.NewDirectory != null)
             {
-                if (!Directory.Exists(newDir))
+                if (!Directory.Exists(folderModel.NewDirectory))
                 {
-                    Directory.CreateDirectory(newDir);
+                    Directory.CreateDirectory(folderModel.NewDirectory);
                 }
 
                 var t = Task.Run(() =>
@@ -111,7 +115,7 @@ namespace CopyAndRenameObj.BL.Controler
                     for (var i = 0; i < folderModel.SelectFolderFilesList.Count; i++)
                     {
                         File.Copy(folderModel.SelectFolderFilesList[i].FullName,
-                            Path.Combine(newDir, folderModel.NewFilesNamesList[i]), true);
+                            Path.Combine(folderModel.NewDirectory, folderModel.NewFilesNamesList[i]), true);
                     }
                 });
 

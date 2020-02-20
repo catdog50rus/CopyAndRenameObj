@@ -1,0 +1,6 @@
+.git/
+.vs/
+/CopyAndRenameObj.BL/bin/
+/CopyAndRenameObj.BL/obj/
+/CopyAndRenameObj.CI/bin/
+/CopyAndRenameObj.CI/obj/
