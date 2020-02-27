@@ -56,7 +56,7 @@ namespace CopyAndRenameObj.BL.Controler
             return folderModel.SelectFolderFilesList;  
         }
 
-        public bool ChangeFilesNames(string selectString, string newString)
+        public void ChangeFilesNames(string selectString, string newString)
         {
             folderModel.NewFilesNamesList.Clear();
             if (newString != "" && (selectString != null && selectString != ""))
@@ -69,7 +69,7 @@ namespace CopyAndRenameObj.BL.Controler
 
                 folderModel.NewDirectory = selectDir.Replace(selectString, newString);
                 //newDir = selectDir.Replace(selectString, newString);
-
+                /*
                 for (int i = 0; i < folderModel.OldFilesNamesList.Count; i++)
                 {
                     if (folderModel.NewFilesNamesList[i] != folderModel.OldFilesNamesList[i])
@@ -78,12 +78,14 @@ namespace CopyAndRenameObj.BL.Controler
                     }
                     
                 }
-                return false;
+                return false;*/
             }
+            /*
             else
             {
                 return false;
-            }
+            }*/
+            
         }
 
 

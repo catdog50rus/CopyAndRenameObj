@@ -73,6 +73,19 @@ namespace CopyAndRenameObj.CI
             
             if(textNew.Text != textOld.Text)
             {
+                try
+                {
+                    controller.ChangeFilesNames(textOld.Text, textNew.Text);
+                    ListNewUpdate();
+                    buttonCopy.Enabled = true;
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("Изменяемая часть названия файла не найдена!", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+                /*
                 var res = controller.ChangeFilesNames(textOld.Text, textNew.Text);
                 if (res)
                 {
@@ -83,7 +96,7 @@ namespace CopyAndRenameObj.CI
                 {
                     MessageBox.Show("Изменяемая часть названия файла не найдена!", "Что-то пошло не так!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
+              */
             } 
             else
             {
