@@ -29,42 +29,26 @@ namespace CopyAndRenameObj.CI
             
         }
 
+        #region Обработка нажатия кнопок
         private void ButtonSelect_Click(object sender, EventArgs e)
         {
             
             Clear();
+            //Окно выбора директории
             DialogResult result = SelectFolderDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
+                
                 selectedPath = SelectFolderDialog.SelectedPath;
-                //SelectDirs.Items.AddRange(Directory.GetDirectories(SelectFolderDialog.SelectedPath));
+                //Создаем коллекцию директорий в выбранной папке
                 var collection = new List<string>();
                 collection.AddRange(Directory.GetDirectories(selectedPath));
+                //заполняем список назаваниями директорий в выбраной папке
                 foreach (var item in collection)
                 {
                     SelectDirs.Items.Add(item.Remove(0, selectedPath.Length+1));
                 }
             }
-        }
-
-        private void ListBox1_DoubleClick(object sender, EventArgs e)
-        {
-            
-            
-            if (SelectDirs.SelectedItem != null)
-            {
-                //controller = new FolderController();
-                //controller.SetSelectDir(SelectDirs.SelectedItem.ToString());
-                
-                var path = $"{selectedPath}/{SelectDirs.SelectedItem.ToString()}";
-                controller = new FolderController();
-                controller.SetSelectDir(@path);
-                //
-                ListFoldersUpdate();
-                textOld.Enabled = true;
-            }
-            
-
         }
 
         private void ButtonRename_Click(object sender, EventArgs e)
@@ -85,18 +69,6 @@ namespace CopyAndRenameObj.CI
                     MessageBox.Show("Изменяемая часть названия файла не найдена!", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 
-                /*
-                var res = controller.ChangeFilesNames(textOld.Text, textNew.Text);
-                if (res)
-                {
-                    ListNewUpdate();
-                    buttonCopy.Enabled = true;
-                }
-                else
-                {
-                    MessageBox.Show("Изменяемая часть названия файла не найдена!", "Что-то пошло не так!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-              */
             } 
             else
             {
@@ -123,29 +95,55 @@ namespace CopyAndRenameObj.CI
             }
            
         }
+        #endregion
 
+        #region Обработка выбора директории
+        private void SelectDirs_DoubleClick(object sender, EventArgs e)
+        {
+
+
+            if (SelectDirs.SelectedItem != null)
+            {
+                var path = $"{selectedPath}/{SelectDirs.SelectedItem.ToString()}";
+                controller = new FolderController();
+                controller.SetSelectDir(@path);
+                //
+                ListFoldersUpdate();
+                textOld.Enabled = true;
+            }
+
+
+        }
+        #endregion
+
+        #region Обновление списков
         private void ListFoldersUpdate()
         {
             
-            listView1.Items.Clear();
-
+            //очищаем список копируемых файлов
+            listViewOld.Items.Clear();
+            //заполняем список копируемых файлов
             foreach (var file in controller.GetSelectFoldersFilesNamesList())
             {
-                listView1.Items.Add(file.Name);
-
+                listViewOld.Items.Add(file.Name);
             }
-
+           
         }
 
         private void ListNewUpdate()
         {
-           
-            listView2.Items.Clear();
+
+            //очищаем список новых файлов
+            listViewNew.Items.Clear();
+            //заполняем список новых файлов
             foreach (var file in controller.GetNewFilesNamesList())
             {
-                listView2.Items.Add(file);
+                listViewNew.Items.Add(file);
             }
         }
+        #endregion
+
+        #region Активация кнопок и надписей
 
         private void TextOld_TextChanged(object sender, EventArgs e)
         {
@@ -158,11 +156,15 @@ namespace CopyAndRenameObj.CI
         {
             buttonRename.Enabled = (textNew.Text != "" && textOld.Text !="")?   true : false;
         }
+        #endregion
 
+        /// <summary>
+        /// Очистка UI
+        /// </summary>
         private void Clear()
         {
-            listView1.Items.Clear();
-            listView2.Items.Clear();
+            listViewOld.Items.Clear();
+            listViewNew.Items.Clear();
             textOld.Text = null;
             textNew.Text = null;
             buttonRename.Enabled = false;

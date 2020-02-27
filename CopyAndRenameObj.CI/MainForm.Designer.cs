@@ -37,7 +37,7 @@
             this.buttonSelect = new System.Windows.Forms.Button();
             this.buttonRename = new System.Windows.Forms.Button();
             this.SelectFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listViewOld = new System.Windows.Forms.ListView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.SelectDirs = new System.Windows.Forms.ListBox();
@@ -45,7 +45,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.buttonCopy = new System.Windows.Forms.Button();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.listViewNew = new System.Windows.Forms.ListView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.Description = new System.Windows.Forms.Label();
@@ -117,15 +117,15 @@
             this.buttonRename.UseVisualStyleBackColor = true;
             this.buttonRename.Click += new System.EventHandler(this.ButtonRename_Click);
             // 
-            // listView1
+            // listViewOld
             // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(16, 25);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(225, 238);
-            this.listView1.TabIndex = 7;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.List;
+            this.listViewOld.HideSelection = false;
+            this.listViewOld.Location = new System.Drawing.Point(16, 25);
+            this.listViewOld.Name = "listViewOld";
+            this.listViewOld.Size = new System.Drawing.Size(225, 238);
+            this.listViewOld.TabIndex = 7;
+            this.listViewOld.UseCompatibleStateImageBehavior = false;
+            this.listViewOld.View = System.Windows.Forms.View.List;
             // 
             // panel1
             // 
@@ -154,7 +154,7 @@
             this.SelectDirs.Name = "SelectDirs";
             this.SelectDirs.Size = new System.Drawing.Size(225, 238);
             this.SelectDirs.TabIndex = 6;
-            this.SelectDirs.DoubleClick += new System.EventHandler(this.ListBox1_DoubleClick);
+            this.SelectDirs.DoubleClick += new System.EventHandler(this.SelectDirs_DoubleClick);
             // 
             // panel2
             // 
@@ -162,8 +162,8 @@
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.buttonCopy);
-            this.panel2.Controls.Add(this.listView1);
-            this.panel2.Controls.Add(this.listView2);
+            this.panel2.Controls.Add(this.listViewOld);
+            this.panel2.Controls.Add(this.listViewNew);
             this.panel2.Controls.Add(this.buttonRename);
             this.panel2.Location = new System.Drawing.Point(260, 79);
             this.panel2.Name = "panel2";
@@ -198,15 +198,15 @@
             this.buttonCopy.UseVisualStyleBackColor = true;
             this.buttonCopy.Click += new System.EventHandler(this.ButtonCopy_Click);
             // 
-            // listView2
+            // listViewNew
             // 
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(256, 24);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(225, 238);
-            this.listView2.TabIndex = 7;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.List;
+            this.listViewNew.HideSelection = false;
+            this.listViewNew.Location = new System.Drawing.Point(256, 24);
+            this.listViewNew.Name = "listViewNew";
+            this.listViewNew.Size = new System.Drawing.Size(225, 238);
+            this.listViewNew.TabIndex = 7;
+            this.listViewNew.UseCompatibleStateImageBehavior = false;
+            this.listViewNew.View = System.Windows.Forms.View.List;
             // 
             // panel3
             // 
@@ -272,10 +272,10 @@
         private System.Windows.Forms.Button buttonSelect;
         private System.Windows.Forms.Button buttonRename;
         private System.Windows.Forms.FolderBrowserDialog SelectFolderDialog;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listViewOld;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ListView listViewNew;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button buttonCopy;
         private System.Windows.Forms.MenuStrip menuStrip1;

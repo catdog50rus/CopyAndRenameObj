@@ -52,7 +52,6 @@ namespace CopyAndRenameObj.BL.Controler
         /// <returns>Метод для получения из модели списка файлов</returns>
         public List<FileInfo> GetSelectFoldersFilesNamesList()
         {
-            
             return folderModel.SelectFolderFilesList;  
         }
 
@@ -68,23 +67,8 @@ namespace CopyAndRenameObj.BL.Controler
                 }
 
                 folderModel.NewDirectory = selectDir.Replace(selectString, newString);
-                //newDir = selectDir.Replace(selectString, newString);
-                /*
-                for (int i = 0; i < folderModel.OldFilesNamesList.Count; i++)
-                {
-                    if (folderModel.NewFilesNamesList[i] != folderModel.OldFilesNamesList[i])
-                    {
-                        return true;
-                    }
-                    
-                }
-                return false;*/
+                
             }
-            /*
-            else
-            {
-                return false;
-            }*/
             
         }
 
@@ -96,6 +80,7 @@ namespace CopyAndRenameObj.BL.Controler
         public List<string> GetNewFilesNamesList()
         {
             return folderModel.NewFilesNamesList;
+
         }
 
 
