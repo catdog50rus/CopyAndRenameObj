@@ -200,9 +200,18 @@ namespace CopyAndRenameObj.CI
             if (SelectDirs.SelectedItem != null)
             {
                 var path = $"{selectedPath}/{SelectDirs.SelectedItem.ToString()}";
-                new DeleteController(@path);
-                Clear();
-                SelectDirsUpdate();
+                var res = new DeleteController().Delete(path);
+                if (res)
+                {
+                    Clear();
+                    SelectDirsUpdate();
+                    MessageBox.Show("Папка удалена!", "Папка удалена!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Что-то пошло не так!", "Ошибка удаления!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
             }
         }
     }

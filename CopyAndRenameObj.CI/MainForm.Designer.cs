@@ -39,6 +39,7 @@
             this.SelectFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.listViewOld = new System.Windows.Forms.ListView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonDel = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.SelectDirs = new System.Windows.Forms.ListBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -52,7 +53,6 @@
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.OptionsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.SelectFolderMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buttonDel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -147,6 +147,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(251, 315);
             this.panel1.TabIndex = 8;
+            // 
+            // buttonDel
+            // 
+            this.buttonDel.Location = new System.Drawing.Point(136, 268);
+            this.buttonDel.Name = "buttonDel";
+            this.buttonDel.Size = new System.Drawing.Size(107, 30);
+            this.buttonDel.TabIndex = 8;
+            this.buttonDel.Text = "Удалить папку";
+            this.buttonDel.UseVisualStyleBackColor = true;
+            this.buttonDel.Click += new System.EventHandler(this.ButtonDel_Click);
             // 
             // label4
             // 
@@ -272,16 +282,6 @@
             this.SelectFolderMenuItem.Text = "Выбрать папку с MSTS";
             this.SelectFolderMenuItem.Click += new System.EventHandler(this.SelectFolderMenuItem_Click);
             // 
-            // buttonDel
-            // 
-            this.buttonDel.Location = new System.Drawing.Point(136, 268);
-            this.buttonDel.Name = "buttonDel";
-            this.buttonDel.Size = new System.Drawing.Size(107, 30);
-            this.buttonDel.TabIndex = 8;
-            this.buttonDel.Text = "Удалить папку";
-            this.buttonDel.UseVisualStyleBackColor = true;
-            this.buttonDel.Click += new System.EventHandler(this.ButtonDel_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -296,6 +296,7 @@
             this.Controls.Add(this.menuStrip2);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
