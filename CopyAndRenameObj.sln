@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopyAndRenameObj.CI", "CopyAndRenameObj.CI\CopyAndRenameObj.CI.csproj", "{CB158194-B163-478D-8FA5-3F38F8D901D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopyAndRenameObj.BL", "CopyAndRenameObj.BL\CopyAndRenameObj.BL.csproj", "{B6D6A1AB-E3CA-405F-A61C-460D940EB6FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CopyAndRenameObj.BL", "CopyAndRenameObj.BL\CopyAndRenameObj.BL.csproj", "{B6D6A1AB-E3CA-405F-A61C-460D940EB6FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,16 +1,8 @@
 ﻿using CopyAndRenameObj.BL.Controler;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
 
 namespace CopyAndRenameObj.CI
 {
@@ -26,68 +18,56 @@ namespace CopyAndRenameObj.CI
             buttonCopy.Enabled = false;
             textOld.Enabled = false;
             textNew.Enabled = false;
-            
+            //Пробуем загрузить расположение папки с MSTS
+            selectedPath = new OptionsController().Load();
+            SelectDirsUpdate();
         }
 
         #region Обработка нажатия кнопок
         private void ButtonSelect_Click(object sender, EventArgs e)
         {
-            
             Clear();
             //Окно выбора директории
             DialogResult result = SelectFolderDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                
                 selectedPath = SelectFolderDialog.SelectedPath;
-                //Создаем коллекцию директорий в выбранной папке
-                var collection = new List<string>();
-                collection.AddRange(Directory.GetDirectories(selectedPath));
-                //заполняем список назаваниями директорий в выбраной папке
-                foreach (var item in collection)
-                {
-                    SelectDirs.Items.Add(item.Remove(0, selectedPath.Length+1));
-                }
+                SelectDirsUpdate();
             }
         }
 
         private void ButtonRename_Click(object sender, EventArgs e)
         {
-
-            
             if(textNew.Text != textOld.Text)
             {
-                try
+                var result = new RenameFilesController(controller).ChangeFilesNames(textOld.Text, textNew.Text);
+                if (result)
                 {
-                    controller.ChangeFilesNames(textOld.Text, textNew.Text);
                     ListNewUpdate();
                     buttonCopy.Enabled = true;
                 }
-                catch (Exception ex)
+                else
                 {
-
-                    MessageBox.Show("Изменяемая часть названия файла не найдена!", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Изменяемая часть названия файла не найдена!", "Изменений не найдено", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    buttonCopy.Enabled = false;
                 }
-                
             } 
             else
             {
                 MessageBox.Show("Не указан, что меняется в файлах!", "Что-то пошло не так!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                buttonCopy.Enabled = false;
             }
-            
-
         }
 
         private void ButtonCopy_Click(object sender, EventArgs e)
         {
-            
-            bool res = controller.CopyFiles();
+            var res = new CopyFilesController(controller).CopyFiles(); 
             
             if (res)
             {
+                SelectDirsUpdate();
+                listViewNew.Items.Clear();
                 MessageBox.Show("Копирование успешно завершено!", "Выполнено!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Clear();
-                SelectDirs.Items.AddRange(Directory.GetDirectories(SelectFolderDialog.SelectedPath));
             }
             else
             {
@@ -100,8 +80,6 @@ namespace CopyAndRenameObj.CI
         #region Обработка выбора директории
         private void SelectDirs_DoubleClick(object sender, EventArgs e)
         {
-
-
             if (SelectDirs.SelectedItem != null)
             {
                 var path = $"{selectedPath}/{SelectDirs.SelectedItem.ToString()}";
@@ -111,12 +89,13 @@ namespace CopyAndRenameObj.CI
                 ListFoldersUpdate();
                 textOld.Enabled = true;
             }
-
-
         }
         #endregion
 
         #region Обновление списков
+        /// <summary>
+        /// Обновления спска файлов в выбранной директории
+        /// </summary>
         private void ListFoldersUpdate()
         {
             
@@ -129,7 +108,9 @@ namespace CopyAndRenameObj.CI
             }
            
         }
-
+        /// <summary>
+        /// Обновления списка измененных имен файлов
+        /// </summary>
         private void ListNewUpdate()
         {
 
@@ -141,20 +122,41 @@ namespace CopyAndRenameObj.CI
                 listViewNew.Items.Add(file);
             }
         }
+        /// <summary>
+        /// Обновление списка директорий
+        /// </summary>
+        private void SelectDirsUpdate()
+        {
+            SelectDirs.Items.Clear();
+            //Создаем коллекцию директорий в выбранной папке
+            var collection = new List<string>();
+            collection.AddRange(Directory.GetDirectories(selectedPath));
+            //заполняем список назаваниями директорий в выбраной папке
+            foreach (var item in collection)
+            {
+                SelectDirs.Items.Add(item.Remove(0, selectedPath.Length + 1));
+            }
+        }
+
         #endregion
 
         #region Активация кнопок и надписей
 
         private void TextOld_TextChanged(object sender, EventArgs e)
         {
-            
+            buttonCopy.Enabled = false;
+            buttonRename.Enabled = false;
             textNew.Enabled = textOld.Text != "" ? true : false;
             buttonRename.Enabled = (textNew.Text != "" && textOld.Text != "") ? true : false;
+            listViewNew.Items.Clear();
         }
 
         private void TextNew_TextChanged(object sender, EventArgs e)
         {
+            buttonCopy.Enabled = false;
+            buttonRename.Enabled = false;
             buttonRename.Enabled = (textNew.Text != "" && textOld.Text !="")?   true : false;
+            listViewNew.Items.Clear();
         }
         #endregion
 
@@ -173,6 +175,35 @@ namespace CopyAndRenameObj.CI
             textNew.Enabled = false;
             SelectDirs.Items.Clear();
             
+        }
+
+        ///<summary>
+        ///Выбираем и сохраняем расположение папки с MSTS
+        ///</summary>
+        private void SelectFolderMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = SelectFolderDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                var path = SelectFolderDialog.SelectedPath;
+                selectedPath = Path.Combine(path, "TRAINS", "TRAINSET");
+                new OptionsController().Save(selectedPath);
+            }
+            SelectDirsUpdate();
+        }
+
+        /// <summary>
+        /// Удаляет выбранную папку с диска
+        /// </summary>
+        private void ButtonDel_Click(object sender, EventArgs e)
+        {
+            if (SelectDirs.SelectedItem != null)
+            {
+                var path = $"{selectedPath}/{SelectDirs.SelectedItem.ToString()}";
+                new DeleteController(@path);
+                Clear();
+                SelectDirsUpdate();
+            }
         }
     }
 }

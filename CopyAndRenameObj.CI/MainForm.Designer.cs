@@ -49,9 +49,14 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.Description = new System.Windows.Forms.Label();
+            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.OptionsMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.SelectFolderMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonDel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -69,7 +74,9 @@
             this.textOld.Name = "textOld";
             this.textOld.Size = new System.Drawing.Size(123, 20);
             this.textOld.TabIndex = 1;
+            this.textOld.Click += new System.EventHandler(this.TextOld_TextChanged);
             this.textOld.TextChanged += new System.EventHandler(this.TextOld_TextChanged);
+            this.textOld.DoubleClick += new System.EventHandler(this.TextOld_TextChanged);
             // 
             // textNew
             // 
@@ -77,7 +84,9 @@
             this.textNew.Name = "textNew";
             this.textNew.Size = new System.Drawing.Size(126, 20);
             this.textNew.TabIndex = 2;
+            this.textNew.Click += new System.EventHandler(this.TextNew_TextChanged);
             this.textNew.TextChanged += new System.EventHandler(this.TextNew_TextChanged);
+            this.textNew.DoubleClick += new System.EventHandler(this.TextNew_TextChanged);
             // 
             // label2
             // 
@@ -99,7 +108,7 @@
             // 
             // buttonSelect
             // 
-            this.buttonSelect.Location = new System.Drawing.Point(67, 269);
+            this.buttonSelect.Location = new System.Drawing.Point(18, 269);
             this.buttonSelect.Name = "buttonSelect";
             this.buttonSelect.Size = new System.Drawing.Size(107, 30);
             this.buttonSelect.TabIndex = 5;
@@ -130,6 +139,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.buttonDel);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.SelectDirs);
             this.panel1.Controls.Add(this.buttonSelect);
@@ -222,7 +232,7 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 24);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(764, 24);
             this.menuStrip1.TabIndex = 11;
@@ -237,6 +247,41 @@
             this.Description.Text = resources.GetString("Description.Text");
             this.Description.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // menuStrip2
+            // 
+            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OptionsMenu});
+            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Size = new System.Drawing.Size(764, 24);
+            this.menuStrip2.TabIndex = 13;
+            this.menuStrip2.Text = "menuStrip2";
+            // 
+            // OptionsMenu
+            // 
+            this.OptionsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SelectFolderMenuItem});
+            this.OptionsMenu.Name = "OptionsMenu";
+            this.OptionsMenu.Size = new System.Drawing.Size(79, 20);
+            this.OptionsMenu.Text = "Настройки";
+            // 
+            // SelectFolderMenuItem
+            // 
+            this.SelectFolderMenuItem.Name = "SelectFolderMenuItem";
+            this.SelectFolderMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.SelectFolderMenuItem.Text = "Выбрать папку с MSTS";
+            this.SelectFolderMenuItem.Click += new System.EventHandler(this.SelectFolderMenuItem_Click);
+            // 
+            // buttonDel
+            // 
+            this.buttonDel.Location = new System.Drawing.Point(136, 268);
+            this.buttonDel.Name = "buttonDel";
+            this.buttonDel.Size = new System.Drawing.Size(107, 30);
+            this.buttonDel.TabIndex = 8;
+            this.buttonDel.Text = "Удалить папку";
+            this.buttonDel.UseVisualStyleBackColor = true;
+            this.buttonDel.Click += new System.EventHandler(this.ButtonDel_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -248,6 +293,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menuStrip2);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "MainForm";
@@ -257,6 +303,8 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.menuStrip2.ResumeLayout(false);
+            this.menuStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -284,6 +332,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.MenuStrip menuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem OptionsMenu;
+        private System.Windows.Forms.ToolStripMenuItem SelectFolderMenuItem;
+        private System.Windows.Forms.Button buttonDel;
     }
 }
 
