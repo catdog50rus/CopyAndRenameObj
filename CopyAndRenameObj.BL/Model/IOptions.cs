@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CopyAndRenameObj.BL.Model
+﻿namespace CopyAndRenameObj.BL.Model
 {
     interface IOptions
     {
