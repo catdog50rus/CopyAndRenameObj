@@ -6,8 +6,11 @@ namespace CopyAndRenameObj.BL.Controler
 {
     public class FolderController
     {
+        #region Поля
         private readonly FolderModel folderModel;
+        #endregion
 
+        #region Конструктор
         /// <summary>
         /// В конструкторе создаем экземпляр модели.
         /// </summary>
@@ -16,7 +19,9 @@ namespace CopyAndRenameObj.BL.Controler
             folderModel = new FolderModel();
             
         }
-
+        #endregion
+        
+        #region Методы
         /// <summary>
         /// Метод для обработки выбранного каталога
         /// </summary>
@@ -65,5 +70,6 @@ namespace CopyAndRenameObj.BL.Controler
         {
             return folderModel;
         }
+        #endregion
     }
 }
