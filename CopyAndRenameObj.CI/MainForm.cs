@@ -20,7 +20,11 @@ namespace CopyAndRenameObj.CI
             textNew.Enabled = false;
             //Пробуем загрузить расположение папки с MSTS
             selectedPath = new OptionsController().Load();
-            SelectDirsUpdate();
+            if (selectedPath.Length != 0)
+            {
+                SelectDirsUpdate();
+            }
+            
         }
 
         #region Обработка нажатия кнопок
