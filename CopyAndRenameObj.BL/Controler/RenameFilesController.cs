@@ -9,7 +9,7 @@ namespace CopyAndRenameObj.BL.Controler
 
         public RenameFilesController(FolderController fc)
         {
-            folderModel = fc.GetFolderModel();
+            folderModel = fc.GetFolderModel(); // Получаем модель из контроллера
         }
 
         /// <summary>
@@ -18,10 +18,10 @@ namespace CopyAndRenameObj.BL.Controler
         /// <param name="selectString">искомая строка в имени файла</param>
         /// <param name="newString">новая строка в имени файла</param>
         /// <returns></returns>
-        public bool ChangeFilesNames(string selectString, string newString)
+        public (bool, string) ChangeFilesNames(string selectString, string newString)
         {
-            folderModel.NewFilesNamesList.Clear();
-            if (newString != "" && (selectString != null && selectString != ""))
+            folderModel.NewFilesNamesList.Clear(); //Очищаем список файлов
+            if (newString != "" && (selectString != null && selectString != "")) //Проверяем входные данные
             {
                 //создаем временный список и заполняем его именами фалов, содержащих искомую строку
                 var arr = new List<string>();
@@ -38,11 +38,11 @@ namespace CopyAndRenameObj.BL.Controler
                     folderModel.NewFilesNamesList.AddRange(folderModel.OldFilesNamesList.FindAll(el => !el.Contains(selectString)));
                     //переименовываем директорию
                     folderModel.NewDirectory = folderModel.SelectDirectory.Replace(selectString, newString);
-                    return true;
+                    return (true, "");
                 }
-                return false;
+                return (false, "Изменяемая часть названия файла не найдена!");
             }
-            return false;
+            return (false, "Ошибка входных данных!");
         }
     }
 }

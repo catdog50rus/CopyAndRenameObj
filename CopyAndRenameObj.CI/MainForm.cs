@@ -14,19 +14,14 @@ namespace CopyAndRenameObj.CI
         public MainForm()
         {
             InitializeComponent();
-            buttonRename.Enabled = false;
-            buttonCopy.Enabled = false;
-            textOld.Enabled = false;
-            textNew.Enabled = false;
-            //Пробуем загрузить расположение папки с MSTS
-            selectedPath = new OptionsController().Load();
-            if (selectedPath.Length != 0)
-            {
-                SelectDirsUpdate();
-            }
             
+            Clear(); //Блокируем интерфейс
+            
+            LoadPath();//Пробуем загрузить расположение папки с MSTS
+
         }
 
+        
         #region Обработка нажатия кнопок
         private void ButtonSelect_Click(object sender, EventArgs e)
         {
@@ -40,25 +35,29 @@ namespace CopyAndRenameObj.CI
             }
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки "Заменить"
+        /// </summary>
         private void ButtonRename_Click(object sender, EventArgs e)
         {
-            if(textNew.Text != textOld.Text)
+            if(textNew.Text != textOld.Text) //Проверяем, что есть что менять
             {
+                //Создаем контроллер и вызываем метод переименования файлов и директории
                 var result = new RenameFilesController(controller).ChangeFilesNames(textOld.Text, textNew.Text);
-                if (result)
+                if (result.Item1) // Если все прошло удачно, обновляем списки и активируем кнопку
                 {
                     ListNewUpdate();
                     buttonCopy.Enabled = true;
                 }
-                else
+                else // Иначе выводим сообщение об ошибке
                 {
-                    MessageBox.Show("Изменяемая часть названия файла не найдена!", "Изменений не найдено", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    GetMessageBoxErr(result.Item2) ;
                     buttonCopy.Enabled = false;
                 }
             } 
             else
             {
-                MessageBox.Show("Не указан, что меняется в файлах!", "Что-то пошло не так!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                GetMessageBoxErr("Не указан, что меняется в файлах!");
                 buttonCopy.Enabled = false;
             }
         }
@@ -84,21 +83,21 @@ namespace CopyAndRenameObj.CI
         #region Обработка выбора директории
         private void SelectDirs_DoubleClick(object sender, EventArgs e)
         {
-            if (SelectDirs.SelectedItem != null)
+            if (SelectDirs.SelectedItem != null) // Если пользователь выбрал папку для изменения
             {
-                var path = $"{selectedPath}/{SelectDirs.SelectedItem.ToString()}";
-                controller = new FolderController();
-                controller.SetSelectDir(@path);
+                var path = $"{selectedPath}/{SelectDirs.SelectedItem}";
+                controller = new FolderController(); //Создаем контроллер
+                controller.SetSelectDir(@path); //Передаем в контроллер выбранную папку
                 //
-                ListFoldersUpdate();
-                textOld.Enabled = true;
+                ListFoldersUpdate(); // ОБновляем списки с файлами в выбранной папке
+                textOld.Enabled = true; // Активируем поле для ввода меняемой части
             }
         }
         #endregion
 
         #region Обновление списков
         /// <summary>
-        /// Обновления спска файлов в выбранной директории
+        /// Обновления списка файлов в выбранной директории
         /// </summary>
         private void ListFoldersUpdate()
         {
@@ -135,7 +134,7 @@ namespace CopyAndRenameObj.CI
             //Создаем коллекцию директорий в выбранной папке
             var collection = new List<string>();
             collection.AddRange(Directory.GetDirectories(selectedPath));
-            //заполняем список назаваниями директорий в выбраной папке
+            //заполняем список названиями директорий в выбранной папке
             foreach (var item in collection)
             {
                 SelectDirs.Items.Add(item.Remove(0, selectedPath.Length + 1));
@@ -186,24 +185,23 @@ namespace CopyAndRenameObj.CI
         ///</summary>
         private void SelectFolderMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = SelectFolderDialog.ShowDialog();
-            if (result == DialogResult.OK)
+            DialogResult result = SelectFolderDialog.ShowDialog(); //Открываем диалоговое окно выбора директории
+            if (result == DialogResult.OK) //Если пользователь выбрал директорию
             {
-                var path = SelectFolderDialog.SelectedPath;
-                selectedPath = Path.Combine(path, "TRAINS", "TRAINSET");
-                new OptionsController().Save(selectedPath);
+                var path = SelectFolderDialog.SelectedPath; //Получаем путь к выбранной директории
+                OptionsController.SetPath(path); //Пытаемся записать путь к MSTS в конфигурационный файл
+                LoadPath(); // Пробуем получить путь к МСТС
+                
             }
-            SelectDirsUpdate();
+            
         }
 
-        /// <summary>
-        /// Удаляет выбранную папку с диска
-        /// </summary>
+        
         private void ButtonDel_Click(object sender, EventArgs e)
         {
             if (SelectDirs.SelectedItem != null)
             {
-                var path = $"{selectedPath}/{SelectDirs.SelectedItem.ToString()}";
+                var path = $"{selectedPath}/{SelectDirs.SelectedItem}";
                 var res = new DeleteController().Delete(path);
                 if (res)
                 {
@@ -218,5 +216,28 @@ namespace CopyAndRenameObj.CI
                 
             }
         }
+
+        private void GetMessageBoxErr(string message)
+        {
+            MessageBox.Show(message, "Что-то пошло не так!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        /// <summary>
+        /// Метод получает путь к МСТС
+        /// </summary>
+        private void LoadPath()
+        {
+            var result = OptionsController.GetPath(); //Получаем путь
+            if (result.Item1) //Если удачно
+            {
+                selectedPath = result.Item2; //Присваиваем путь  переменную
+                SelectDirsUpdate(); //Обновляем список папок
+            }
+            else
+            {
+                GetMessageBoxErr(result.Item2);
+            }
+        }
+
     }
 }

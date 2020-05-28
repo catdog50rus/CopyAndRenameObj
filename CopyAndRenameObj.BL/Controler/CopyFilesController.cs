@@ -15,7 +15,7 @@ namespace CopyAndRenameObj.BL.Controler
         /// <summary>
         /// Метод копирует файлы из выбранного каталога в новый
         /// </summary>
-        /// <returns>Метод возвращает true, если копирование файлой прошло успешно или false, если произошла ошибка</returns>
+        /// <returns>Метод возвращает true, если копирование файлов прошло успешно или false, если произошла ошибка</returns>
         public bool CopyFiles()
         {
             if (folderModel.NewDirectory != null)
@@ -28,7 +28,7 @@ namespace CopyAndRenameObj.BL.Controler
                 //Создаем задачу по копированию
                 var t = Task.Run(() =>
                 {
-                    //Копируем по-файлово
+                    //Копируем по одному файлу
                     for (var i = 0; i < folderModel.SelectFolderFilesList.Count; i++)
                     {
                         File.Copy(

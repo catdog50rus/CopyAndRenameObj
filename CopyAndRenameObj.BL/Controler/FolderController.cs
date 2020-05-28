@@ -34,7 +34,7 @@ namespace CopyAndRenameObj.BL.Controler
             //передаем в модель коллекцию файлов в выбранном каталоге
             folderModel.SelectFolderFilesList.AddRange(selectPath.GetFiles());
             
-            //перебираем в модель коллекцию имен файлов
+            //добавляем в модель коллекцию имен файлов
             foreach (var file in folderModel.SelectFolderFilesList)
             {
                 folderModel.OldFilesNamesList.Add(file.Name);
