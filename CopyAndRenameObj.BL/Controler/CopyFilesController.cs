@@ -16,7 +16,7 @@ namespace CopyAndRenameObj.BL.Controler
         /// Метод копирует файлы из выбранного каталога в новый
         /// </summary>
         /// <returns>Метод возвращает true, если копирование файлов прошло успешно или false, если произошла ошибка</returns>
-        public bool CopyFiles()
+        public (bool, string) CopyFiles()
         {
             if (folderModel.NewDirectory != null)
             {
@@ -25,22 +25,34 @@ namespace CopyAndRenameObj.BL.Controler
                 {
                     Directory.CreateDirectory(folderModel.NewDirectory);
                 }
-                //Создаем задачу по копированию
-                var t = Task.Run(() =>
+                
+                try
                 {
-                    //Копируем по одному файлу
-                    for (var i = 0; i < folderModel.SelectFolderFilesList.Count; i++)
+                    //Создаем задачу по копированию
+                    var t = Task.Run(() =>
                     {
-                        File.Copy(
-                            folderModel.SelectFolderFilesList[i].FullName,
-                            Path.Combine(folderModel.NewDirectory, folderModel.NewFilesNamesList[i]), true);
-                    }
-                });
-                //Ожидаем завершения выполнения задачи и возвращаем результат
-                t.Wait();
-                return true;
+                        
+                        for (var i = 0; i < folderModel.SelectFolderFilesList.Count; i++) //Копируем по одному файлу
+                        {
+                             File.Copy(folderModel.SelectFolderFilesList[i].FullName,
+                                       Path.Combine(folderModel.NewDirectory, folderModel.NewFilesNamesList[i]), true);
+                      
+                        }
+                    });
+                    //Ожидаем завершения выполнения задачи и возвращаем результат
+                    t.Wait();
+                    return (true, "Копирование успешно завершено!");
+                }
+                catch (System.Exception)
+                {
+
+                    return(false, "Что-то пошло не так!");
+                }
+                
+                
+                
             }
-            else return false;
+            else return (false, "Что-то пошло не так!");
         }
     } 
 }

@@ -64,17 +64,19 @@ namespace CopyAndRenameObj.CI
 
         private void ButtonCopy_Click(object sender, EventArgs e)
         {
-            var res = new CopyFilesController(controller).CopyFiles(); 
+            //Создаем контроллер, передаем в него модель и вызываем метод копирования файлов
+            //По результату выводим сообщение и очищаем списки
+            var result = new CopyFilesController(controller).CopyFiles(); 
             
-            if (res)
+            if (result.Item1)
             {
                 SelectDirsUpdate();
                 listViewNew.Items.Clear();
-                MessageBox.Show("Копирование успешно завершено!", "Выполнено!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                GetMessageBoxErr(result.Item2);
             }
             else
             {
-                MessageBox.Show("Что-то пошло не так!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                GetMessageBoxErr(result.Item2);
             }
            
         }
@@ -199,19 +201,19 @@ namespace CopyAndRenameObj.CI
         
         private void ButtonDel_Click(object sender, EventArgs e)
         {
-            if (SelectDirs.SelectedItem != null)
+            if (SelectDirs.SelectedItem != null) //Если существует элемент
             {
-                var path = $"{selectedPath}/{SelectDirs.SelectedItem}";
-                var res = new DeleteController().Delete(path);
-                if (res)
+                var path = $"{selectedPath}/{SelectDirs.SelectedItem}"; //Получаем путь
+                var result = new DeleteController().Delete(path); //Создаем контроллер, пытаемся удалить папку, получаем результат
+                if (result.Item1)
                 {
                     Clear();
                     SelectDirsUpdate();
-                    MessageBox.Show("Папка удалена!", "Папка удалена!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    GetMessageBoxErr(result.Item2);
                 }
                 else
                 {
-                    MessageBox.Show("Что-то пошло не так!", "Ошибка удаления!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    GetMessageBoxErr(result.Item2);
                 }
                 
             }
@@ -219,7 +221,7 @@ namespace CopyAndRenameObj.CI
 
         private void GetMessageBoxErr(string message)
         {
-            MessageBox.Show(message, "Что-то пошло не так!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(message, "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         /// <summary>

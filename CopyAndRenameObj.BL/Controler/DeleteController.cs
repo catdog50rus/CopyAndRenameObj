@@ -5,16 +5,16 @@ namespace CopyAndRenameObj.BL.Controler
 {
     public class DeleteController
     {
-        public bool Delete(string path)
+        public (bool, string) Delete(string path)
         {
             try
             {
                 Directory.Delete(path, true);
-                return true;
+                return (true, "Папка удалена!");
             }
             catch (Exception)
             {
-                return false;
+                return (false, "Что-то пошло не так!");
             }
         }
     }
